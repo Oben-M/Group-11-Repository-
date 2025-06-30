@@ -1,6 +1,6 @@
-# network_speed_checker
+# network_speed_senser
 
-A new Flutter project.
+A  Flutter project.
 
 ## Getting Started
 
