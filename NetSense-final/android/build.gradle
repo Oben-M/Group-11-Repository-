@@ -1,0 +1,23 @@
+// This file contains fixes for plugin compatibility issues
+
+subprojects { subproject ->
+    afterEvaluate {
+        if (subproject.name == 'internet_speed_test') {
+            // Set compileSdkVersion to 30 to support Java 9+ source
+            subproject.android.compileSdkVersion 30
+            
+            // Set Java compatibility to 11
+            subproject.android.compileOptions {
+                sourceCompatibility = JavaVersion.VERSION_11
+                targetCompatibility = JavaVersion.VERSION_11
+            }
+            
+            // Set Kotlin JVM target to 11
+            subproject.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+                kotlinOptions {
+                    jvmTarget = "11"
+                }
+            }
+        }
+    }
+}

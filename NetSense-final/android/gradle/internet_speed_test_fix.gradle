@@ -1,0 +1,14 @@
+// This file fixes the JVM target issue with the internet_speed_test plugin
+project.afterEvaluate {
+    if (project.name == 'internet_speed_test') {
+        project.android.compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
+        }
+        project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+            kotlinOptions {
+                jvmTarget = "11"
+            }
+        }
+    }
+}
